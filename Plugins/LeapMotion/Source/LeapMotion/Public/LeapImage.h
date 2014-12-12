@@ -20,6 +20,12 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (FriendlyName = "Distortion", CompactNodeTitle = "", Keywords = "distortion"), Category = "Leap Image")
 	class UTexture2D* Distortion();
 
+	UFUNCTION(BlueprintCallable, meta = (FriendlyName = "TrackBlobs", CompactNodeTitle = "", Keywords = "blob tracking"), Category = "Leap Image")
+	TArray<FVector> TrackBlobs(uint8 brightnessThresholdIn, uint8 brightnessThresholdOut);
+
+	UFUNCTION(BlueprintCallable, meta = (FriendlyName = "LocateBlobs", CompactNodeTitle = "", Keywords = "blob location"), Category = "Leap Image")
+	TArray<FVector> LocateBlobs(TArray<FVector> blobArray1, TArray<FVector> blobArray2);
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Leap Image")
 	int32 DistortionHeight;
 
