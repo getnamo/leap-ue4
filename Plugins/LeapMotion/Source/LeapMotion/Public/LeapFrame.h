@@ -4,7 +4,7 @@
 #include "LeapFrame.generated.h"
 
 UCLASS(BlueprintType)
-class ULeapFrame : public UObject
+class LEAPMOTION_API ULeapFrame : public UObject
 {
 	GENERATED_UCLASS_BODY()
 public:

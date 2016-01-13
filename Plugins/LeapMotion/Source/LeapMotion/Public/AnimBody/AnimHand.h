@@ -5,27 +5,27 @@
 #include "AnimHand.generated.h"
 
 UCLASS(BlueprintType)
-class UAnimHand : public UObject
+class LEAPMOTION_API UAnimHand : public UObject
 {
 	GENERATED_UCLASS_BODY()
 	//Hand Properties
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim Hand")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Hand Finger")
 	float Alpha;
 
 	//Fingers
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Hand Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Hand Finger")
 	UAnimFinger* Thumb;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Hand Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Hand Finger")
 	UAnimFinger* Index;
-	
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Hand Finger")
+
+	UPROPERTY(VisibleAnywhere, Category = "Anim Hand Finger")
 	UAnimFinger* Middle;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Hand Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Hand Finger")
 	UAnimFinger* Ring;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Hand Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Hand Finger")
 	UAnimFinger* Pinky;
 	
 	//Arm and Wrist, NB: Consider moving this up the skeletal tree, for leap this is sufficient

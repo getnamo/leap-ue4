@@ -8,7 +8,7 @@ ULeapEventInterface::ULeapEventInterface(const class FObjectInitializer& PCIP)
 
 }
 
-FString ILeapEventInterface::ToString()
-{
-	return "ILeapEventInterface::ToString()";
-}
+//FString ILeapEventInterface::ToString()
+//{
+//	return "ILeapEventInterface::ToString()";
+//}

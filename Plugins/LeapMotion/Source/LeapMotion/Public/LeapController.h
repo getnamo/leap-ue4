@@ -4,7 +4,7 @@
 #include "LeapController.generated.h"
 
 UCLASS(ClassGroup=Input, meta=(BlueprintSpawnableComponent))
-class ULeapController : public UActorComponent
+class LEAPMOTION_API ULeapController : public UActorComponent
 {
 	GENERATED_UCLASS_BODY()
 
@@ -44,5 +44,6 @@ public:
 
 private:
 	class LeapControllerPrivate* _private;
+	class ILeapEventInterface* EventInterfaceCpp;
 	void InterfaceEventTick(float deltaTime);
 };

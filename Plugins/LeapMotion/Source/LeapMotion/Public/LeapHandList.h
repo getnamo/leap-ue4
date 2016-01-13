@@ -4,7 +4,7 @@
 #include "LeapHandList.generated.h"
 
 UCLASS(BlueprintType)
-class ULeapHandList : public UObject
+class LEAPMOTION_API ULeapHandList : public UObject
 {
 	GENERATED_UCLASS_BODY()
 public:

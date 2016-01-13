@@ -200,7 +200,7 @@ void ULeapController::OnRegister()
 	Super::OnRegister();
 
 	//Attach the delegate pointer automatically
-	SetInterfaceDelegate(GetOwner());
+	SetInterfaceDelegate(GetOwner());		
 
 	//Track and warn users about multiple components.
 	controllerCount++;
@@ -313,7 +313,9 @@ void ULeapController::SetInterfaceDelegate(UObject* newDelegate)
 	//Use this format to support both blueprint and C++ form
 	if (newDelegate->GetClass()->ImplementsInterface(ULeapEventInterface::StaticClass()))
 	{
-		_private->interfaceDelegate = newDelegate;
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("LeapController Warning: Delegate is set"));
+		_private->interfaceDelegate = newDelegate; // Blueprint Interface method
+		EventInterfaceCpp = Cast<ILeapEventInterface>(_private->interfaceDelegate); // Cpp Interface method (to allow override from c++)
 	}
 	else
 	{
@@ -365,7 +367,16 @@ void ULeapController::InterfaceEventTick(float DeltaTime)
 
 	if (_private->pastState.handCount != handCount)
 	{
-		ILeapEventInterface::Execute_HandCountChanged(_private->interfaceDelegate, handCount);
+		//UE_LOG(LeapPluginLog, Log, TEXT("Execute_HandCountChanged"));
+		if(EventInterfaceCpp)
+		{
+			//UE_LOG(LeapPluginLog, Log, TEXT("Execute_HandCountChanged: %s"), *EventInterfaceCpp->ToString());
+			EventInterfaceCpp->OnHandCountChanged(handCount);
+		}
+		else {
+			//UE_LOG(LeapPluginLog, Log, TEXT("Execute_HandCountChanged: Interface c++ not set, calling blueprint."));
+			ILeapEventInterface::Execute_HandCountChanged(_private->interfaceDelegate, handCount);
+		}
 		
 		//Zero our input mapping orientations (akin to letting go of a joystick)
 		if (handCount == 0)
@@ -378,7 +389,7 @@ void ULeapController::InterfaceEventTick(float DeltaTime)
 			EmitAnalogInputEventForKey(EKeysLeap::LeapRightPalmRoll, 0, 0, 0);
 		}
 	}
-
+	
 	//Cycle through each hand
 	for (int i = 0; i < handCount; i++)
 	{
@@ -394,6 +405,11 @@ void ULeapController::InterfaceEventTick(float DeltaTime)
 		_private->eventHand->setHand(hand);
 
 		//Emit hand
+		if(EventInterfaceCpp)
+		{
+			//UE_LOG(LeapPluginLog, Log, TEXT("Calling OnLeapHandMovedCpp: %s"), *EventInterfaceCpp->ToString());
+			EventInterfaceCpp->OnLeapHandMoved(_private->eventHand);
+		}
 		ILeapEventInterface::Execute_LeapHandMoved(_private->interfaceDelegate, _private->eventHand);
 
 		//Left/Right hand forwarding
@@ -414,7 +430,7 @@ void ULeapController::InterfaceEventTick(float DeltaTime)
 			EmitAnalogInputEventForKey(EKeysLeap::LeapLeftPalmYaw, palmOrientation.Yaw * LEAP_IM_SCALE, 0, 0);
 			EmitAnalogInputEventForKey(EKeysLeap::LeapLeftPalmRoll, palmOrientation.Roll * LEAP_IM_SCALE, 0, 0);
 		}
-
+		
 		//Grabbing
 		float grabStrength = hand.grabStrength();
 		bool grabbed = handClosed(grabStrength);
@@ -472,7 +488,7 @@ void ULeapController::InterfaceEventTick(float DeltaTime)
 					EmitKeyUpEventForKey(EKeysLeap::LeapRightPinch, 0, 0);
 			}
 		}
-
+	
 		//-Fingers-
 		Leap::FingerList fingers = hand.fingers();
 
@@ -529,9 +545,10 @@ void ULeapController::InterfaceEventTick(float DeltaTime)
 
 		_private->pastState.setStateForId(pastHandState, hand.id());
 	}
-
+	
 	_private->pastState.handCount = handCount;
-
+	
+	
 	//Gestures
 	for (int i = 0; i < frame.gestures().count(); i++)
 	{
@@ -621,6 +638,6 @@ void ULeapController::InterfaceEventTick(float DeltaTime)
 
 				ILeapEventInterface::Execute_RawImageReceived(_private->interfaceDelegate, _private->eventImage2->Texture(), _private->eventImage2);
 			}
-		}
-	}
+		
+	}}
 }

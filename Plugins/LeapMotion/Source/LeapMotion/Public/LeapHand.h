@@ -6,7 +6,7 @@
 
 
 UCLASS(BlueprintType)
-class ULeapHand : public UObject
+class LEAPMOTION_API ULeapHand : public UObject
 {
 	GENERATED_UCLASS_BODY()
 public:

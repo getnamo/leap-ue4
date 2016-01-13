@@ -4,9 +4,8 @@
 #include "LeapHand.h"
 #include "LeapEventInterface.generated.h"
 
-
-UINTERFACE(MinimalAPI)
-class ULeapEventInterface : public UInterface
+UINTERFACE()
+class LEAPMOTION_API ULeapEventInterface : public UInterface
 {
 	GENERATED_UINTERFACE_BODY()
 };
@@ -18,8 +17,9 @@ class ILeapEventInterface
 public:
 
 	//Hands
-	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "HandMoved", CompactNodeTitle = "", Keywords = "hand moved"), Category = "Leap Interface Event")
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "HandCountChanged", CompactNodeTitle = "", Keywords = "hand count"), Category = "Leap Interface Event")
 	void LeapHandMoved(ULeapHand* hand);
+	virtual void OnLeapHandMoved(ULeapHand* hand) = 0;
 
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "LeftHandMoved", CompactNodeTitle = "", Keywords = "left hand moved"), Category = "Leap Interface Event")
 	void LeapLeftHandMoved(ULeapHand* hand);
@@ -47,6 +47,7 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "HandCountChanged", CompactNodeTitle = "", Keywords = "hand count"), Category = "Leap Interface Event")
 	void HandCountChanged(int32 count);
+	virtual void OnHandCountChanged(int32 count) = 0;
 
 	//Fingers
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "FingerMoved", CompactNodeTitle = "", Keywords = "finger moved"), Category = "Leap Interface Event")
@@ -88,5 +89,6 @@ public:
 	void RawImageReceived(UTexture2D* texture, ULeapImage* image);
 
 	//Help identifying
-	virtual FString ToString();
+	virtual FString ToString() { return "ILeapEventInterface::ToString()"; };
 };
+

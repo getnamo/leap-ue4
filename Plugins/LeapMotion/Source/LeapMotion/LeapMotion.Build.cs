@@ -50,29 +50,34 @@ namespace UnrealBuildTool.Rules
 					"Core",
                     "CoreUObject",
                     "InputCore",
+                    "HeadMountedDisplay",
                     "Slate",
                     "SlateCore",
-                    "HeadMountedDisplay"
 					// ... add other public dependencies that you statically link with here ...
 				}
 				);
 
-			PrivateDependencyModuleNames.AddRange(
-				new string[]
-				{
-					// ... add private dependencies that you statically link with here ...
-				}
-				);
+            if (UEBuildConfiguration.bBuildEditor == true)
+            {
 
-			DynamicallyLoadedModuleNames.AddRange(
-				new string[]
-				{
-					// ... add any modules that your module loads dynamically here ...
-				}
-				);
+                PublicDependencyModuleNames.AddRange(
+                    new string[] {
+                    "LeapMotionEditor",
+                    "UnrealEd",
+                    "AnimGraph",
+                    "AnimGraphRuntime",
+                    }
+                );
 
+                CircularlyReferencedDependentModules.AddRange(
+                    new string[] {
+                    "LeapMotionEditor",
+                    }
+                );
+            }
+            
             LoadLeapLib(Target);
-		}
+        }
 
         public bool LoadLeapLib(TargetInfo Target)
         {

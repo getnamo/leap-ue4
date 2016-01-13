@@ -4,23 +4,23 @@
 #include "AnimBone.generated.h"
 
 UCLASS(BlueprintType)
-class UAnimBone : public UObject
+class LEAPMOTION_API UAnimBone : public UObject
 {
 	GENERATED_UCLASS_BODY()
 
-	UPROPERTY(BlueprintReadWrite, Category = "Anim Bone")
+		UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	FVector Position;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Anim Bone")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	FRotator Orientation;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Anim Bone")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	FVector Scale;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Anim Bone")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	float Length;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Anim Bone")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	float Alpha;
 
 

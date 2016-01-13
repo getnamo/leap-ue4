@@ -13,24 +13,24 @@ enum AnimHandType
 };
 
 UCLASS(BlueprintType)
-class UAnimFinger : public UObject
+class LEAPMOTION_API UAnimFinger : public UObject
 {
 	GENERATED_UCLASS_BODY()
 
 	//Not used in basic animation
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	UAnimBone* Metacarpal;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	UAnimBone* Proximal;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	UAnimBone* Intermediate;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	UAnimBone* Distal;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Anim Finger")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Bone")
 	float Alpha;
 
 	UFUNCTION(BlueprintCallable, Category = "Anim Finger")

@@ -6,22 +6,22 @@
 //NB: this is a limited class used only for leap anim, full class will have full body
 
 UCLASS(ClassGroup = "Animation Skeleton", meta = (BlueprintSpawnableComponent))
-class UAnimBody : public UActorComponent
+class LEAPMOTION_API UAnimBody : public UActorComponent
 {
 	GENERATED_UCLASS_BODY()
 
-	UPROPERTY(BlueprintReadWrite, Category = "Anim Body")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Body")
 	float Alpha;
 
 	//Hands
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Body")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Body")
 	UAnimHand* Left;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Body")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Body")
 	UAnimHand* Right;
 
 	//Head
-	UPROPERTY(BlueprintReadOnly, Category = "Anim Body")
+	UPROPERTY(VisibleAnywhere, Category = "Anim Body")
 	UAnimBone* Head;
 
 
