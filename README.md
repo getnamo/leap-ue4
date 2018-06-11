@@ -1,7 +1,19 @@
 leap-ue4
 ====================
+# v3 Plugin
 
-An event-driven [Leap Motion](http://www.leapmotion.com) plugin for the Unreal Engine 4. 
+Completely rewritten for modern tracking performance using v4 Leap tracking, the new plugin is available at 
+
+https://github.com/leapmotion/leapunreal
+
+with example project content at
+
+https://github.com/leapmotion/leapunrealmodules
+
+I highly recommend you use the new v3 plugin going forward!
+
+# v2 Plugin
+This repository concerns the v2 Leap Motion plugin, an event-driven [Leap Motion](http://www.leapmotion.com) plugin for the Unreal Engine 4. 
 
 You can use convenience blueprints to just select and play or use a custom approach via blueprints or C++. See relevant sections for details
 
