@@ -14,7 +14,7 @@ I highly recommend you use the new v3 plugin going forward!
 
 # v2 Plugin
 
-This plugin is considered deprecated, but remains available for older engine compatibility.
+**This plugin is considered deprecated**, but remains available for older engine compatibility.
 
 This repository concerns the v2 Leap Motion plugin, an event-driven [Leap Motion](http://www.leapmotion.com) plugin for the Unreal Engine 4. 
 
