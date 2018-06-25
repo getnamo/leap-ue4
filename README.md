@@ -13,6 +13,9 @@ https://github.com/leapmotion/leapunrealmodules
 I highly recommend you use the new v3 plugin going forward!
 
 # v2 Plugin
+
+This plugin is considered deprecated, but remains available for older engine compatibility.
+
 This repository concerns the v2 Leap Motion plugin, an event-driven [Leap Motion](http://www.leapmotion.com) plugin for the Unreal Engine 4. 
 
 You can use convenience blueprints to just select and play or use a custom approach via blueprints or C++. See relevant sections for details
